@@ -1,0 +1,9 @@
+*.o
+*.d
+*.img
+*.asm
+*.sym
+_*.c
+_*:
+.gdbinit
+.DS_Store
