@@ -1,0 +1,16 @@
+init: starting sh
+[$ vatest
+--- VA to PA Mapping ---
+va2pa: PDX=0, PTX=0, OFFSET=3288, FLAGS: P=1 W=1 U=1
+Global variable: VA=0XCD8, PA=0xDEE2CD8
+va2pa: PDX=0, PTX=2, OFFSET=4028, FLAGS: P=1 W=1 U=1
+Local variable: VA=Øx2FBC, PA=ØxDEDFFBC
+va2pa: PDX=0, PTX=10, OFFSET=4088, FLAGS: P=1 W=1 U=1
+Heap variable: VA=0xAFF8, PA=0xDFC4FF8
+—-- Invalid Address Test ---
+Invalid VA (0x7FFFFFFF): PA=-1
+--- Fork Test ---
+va2pa: PDX=0, PTX=0, OFFSET=3288, FLAGS: P=1 W=1 U=1
+Child] Global variable: VA=ØXCD8, PA=ØXDF2CCD8
+va2pa: PDX=0, PTX=0, OFFSET=3288, FLAGS: P=1 W=1 U=1
+[Parent] Global variable: VA=0xCD8, PA=0xDEE2CD8
