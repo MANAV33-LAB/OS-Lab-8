@@ -1,0 +1,25 @@
+init: starting sh
+$ memtest
+—-- Initial Memory Stats ---
+Total Pages: 57344
+Free Pages: 56789
+User Pages:
+3
+PT Pages:
+66
+—-- Growing Memory (malloc 8192 bytes) —-
+Free Pages: 56781 (Decreased)
+User Pages: 11
+PT Pages:
+66
+--- Forking Child Process ---
+[Child] Memory Stats:
+Free Pages: 56703 (Decreased due to page duplication)
+User Pages: 11
+—- After Child Exits (Memory Leak Check) ——-
+Total Pages: 57344
+Free Pages: 56781
+(Returned to pre-fork state)
+User Pages: 11
+PT Pages:
+66
