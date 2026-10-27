@@ -1,0 +1,34 @@
+init: starting sh
+$ lazytest
+=== Q4: Lazy Memory Allocation ===
+Free frames before sbrk              : 56788
+Free frames after sbrk(32MB)       : 56788 (used 0)
+Free frames after touching 4 pages: 56781 (used 7, includes page-table frames)
+base[0 MB + 100] = A
+base[8 MB + 100] = B
+base[16 MB + 100] = C
+base[24 MB + 100] = D
+Untouched page reads as zero: 0
+
+[Test: fork with lazy pages]
+child: copied value base[100] = A
+child: touched a new page, value 7. Exiting.
+parent: child exited, base[100] still A
+
+[Test: system calls with untouched buffers]
+read() into untouched buffer returned 5: hello
+write() from untouched buffer returned 3
+
+[Test: invalid pointer given to a system call]
+read() with address beyond sz returned -1 (kernel did not crash)
+
+[Test: access at address >= sz]
+pid 5 lazytest: invalid memory access at 0x200e000 (eip 0x288) -- kill proc
+parent: child was killed, parent still alive
+
+[Test: access to the stack guard page]
+pid 6 lazytest: invalid memory access at 0x2000 (eip 0x251) -- kill proc
+parent: child was killed, parent still alive
+
+Free frames after sbrk(-32MB)     : 56782 (freed 1 touched pages)
+Lazy allocation test complete.
